@@ -41,7 +41,7 @@ Si sale algo tipo `Python 3.x.x`, todo bien.
 1. Crea una carpeta (por ejemplo: `mi_proyecto_python`)
 2. Ábrela en **VS Code** (`Archivo → Abrir carpeta`)
 
-![Pantalla principal]("Assets/IMG/Captura de pantalla 2026-02-05 102526.png")
+![Captura de pantalla](Assets/IMG/Captura%20de%20pantalla%202026-02-05%20102526.png)
 
 ---
 
