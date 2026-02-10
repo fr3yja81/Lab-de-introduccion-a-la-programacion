@@ -41,6 +41,8 @@ Si sale algo tipo `Python 3.x.x`, todo bien.
 1. Crea una carpeta (por ejemplo: `mi_proyecto_python`)
 2. Ábrela en **VS Code** (`Archivo → Abrir carpeta`)
 
+![Pantalla principal]("Assets/IMG/Captura de pantalla 2026-02-05 102526.png")
+
 ---
 
 ## 2. Abrir la terminal en VS Code
