@@ -32,6 +32,8 @@ Para comprobar que Python está bien instalado, abre la terminal y escribe:
 python --version
 ```
 
+![Captura de pantalla](Assets/IMG/Captura%20de%20pantalla%202026-02-10%20190826.png)
+
 Si sale algo tipo `Python 3.x.x`, todo bien.
 
 ---
@@ -39,9 +41,13 @@ Si sale algo tipo `Python 3.x.x`, todo bien.
 ## 1. Crear la carpeta del proyecto
 
 1. Crea una carpeta (por ejemplo: `mi_proyecto_python`)
+
+![Captura de pantalla](Assets/IMG/Captura%20de%20pantalla%202026-02-10%20191426.png)
+
+
 2. Ábrela en **VS Code** (`Archivo → Abrir carpeta`)
 
-![Captura de pantalla](Assets/IMG/Captura%20de%20pantalla%202026-02-05%20102526.png)
+![Captura de pantalla](Assets/IMG/Captura%20de%20pantalla%202026-02-10%20105705.png)
 
 ---
 
@@ -54,6 +60,8 @@ Dentro de VS Code:
 
 Asegúrate de que estés dentro de la carpeta del proyecto.
 
+![Captura de pantalla](Assets/IMG/Captura%20de%20pantalla%202026-02-10%20105745.png)
+
 ---
 
 ## 3. Crear el entorno virtual
@@ -64,7 +72,11 @@ En la terminal escribe:
 python -m venv venv
 ```
 
+![Captura de pantalla](Assets/IMG/Captura%20de%20pantalla%202026-02-10%20191944.png)
+
 Esto crea una carpeta llamada `venv` donde vive el entorno virtual.
+
+![Captura de pantalla](Assets/IMG/Captura%20de%20pantalla%202026-02-10%20191859.png)
 
 ---
 
@@ -88,6 +100,8 @@ Si todo salió bien, verás algo así:
 (venv) C:\tu\proyecto>
 ```
 
+![Captura de pantalla](Assets/IMG/Captura%20de%20pantalla%202026-02-10%20192139.png)
+
 Ese `(venv)` significa que **ya estás dentro del entorno virtual**.
 
 ---
@@ -104,6 +118,8 @@ Esto es importante para que VS Code no se confunda.
 venv\Scripts\python.exe
 ```
 
+![Captura de pantalla](Assets/IMG/Captura%20de%20pantalla%202026-02-10%20192317.png)
+
 Listo, VS Code ya sabe qué Python usar 
 
 ---
@@ -116,11 +132,15 @@ Con el entorno activado, instala librerías, por ejemplo:
 pip install numpy
 ```
 
+![Captura de pantalla](Assets/IMG/Captura%20de%20pantalla%202026-02-10%20192502.png)
+
 Para ver lo que tienes instalado:
 
 ```bash
 pip list
 ```
+
+![Captura de pantalla](Assets/IMG/Captura%20de%20pantalla%202026-02-10%20192559.png)
 
 ## Resumen
 
@@ -129,3 +149,5 @@ python -m venv venv
 venv\Scripts\activate
 pip install lo_que_necesites
 ```
+
+![Captura de pantalla](Assets/IMG/Captura%20de%20pantalla%202026-02-10%20192711.png)
