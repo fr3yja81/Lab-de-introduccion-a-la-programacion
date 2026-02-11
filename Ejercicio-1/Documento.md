@@ -32,9 +32,9 @@ Para comprobar que Python está bien instalado, abre la terminal y escribe:
 python --version
 ```
 
-![Captura de pantalla](Assets/IMG/Captura%20de%20pantalla%202026-02-10%20190826.png)
+Si sale algo tipo `Python 3.x.x`, como lo siguiente, todo bien.
 
-Si sale algo tipo `Python 3.x.x`, todo bien.
+![Captura de pantalla](Assets/IMG/Captura%20de%20pantalla%202026-02-10%20190826.png)
 
 ---
 
@@ -150,4 +150,4 @@ venv\Scripts\activate
 pip install lo_que_necesites
 ```
 
-![Captura de pantalla](Assets/IMG/Captura%20de%20pantalla%202026-02-10%20192711.png)
+![Captura de pantalla](Assets/IMG/123.png)
