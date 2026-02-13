@@ -1,3 +1,4 @@
+#conversor
 def decimal_a_binario(numero):
     if numero == 0:
         return "0"

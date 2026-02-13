@@ -76,6 +76,5 @@ Este programa combina:
 - Funciones  
 - Ciclos  
 - Condicionales  
-- Manejo de errores  
 
 Y todo se basa en dividir y guardar residuos para cambiar de base numérica.
