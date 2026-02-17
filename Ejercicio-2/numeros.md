@@ -118,6 +118,8 @@ except ValueError:
 
 Evita que el programa falle si el usuario escribe un valor no númerico.
 
+![Captura 5](Assets/IMG/image.png)
+
 ---
 
 ##  Punto de inicio del programa
