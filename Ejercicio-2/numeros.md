@@ -53,6 +53,8 @@ print("2. Salir")
 
 Permite elegir entre convertir un número o cerrar el programa.
 
+![Captura 1](Assets/IMG/Captura%20de%20pantalla%202026-02-16%20213522.png)
+
 ---
 
 ### Leer opción del usuario
@@ -72,6 +74,8 @@ if opcion == "2":
 
 Detiene el ciclo y termina el programa.
 
+![Captura 4](Assets/IMG/Captura%20de%20pantalla%202026-02-16%20213559.png)
+
 ---
 
 ### Convertir número
@@ -81,6 +85,8 @@ numero = int(input("Ingrese un número decimal: "))
 ```
 
 Pide un número y lo convierte a entero.
+
+![Captura 2](Assets/IMG/Captura%20de%20pantalla%202026-02-16%20213534.png)
 
 Luego:
 
@@ -99,6 +105,8 @@ for tipo, valor in resultados.items():
 ```
 
 Recorre el diccionario e imprime cada conversión.
+
+![Captura 3](Assets/IMG/Captura%20de%20pantalla%202026-02-16%20213549.png)
 
 ---
 
