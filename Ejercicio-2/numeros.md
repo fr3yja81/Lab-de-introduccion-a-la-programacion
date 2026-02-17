@@ -4,7 +4,7 @@ Este programa convierte un número decimal a diferentes sistemas númericos: bin
 
 ---
 
-## 🔹 Función `convertir(numero)`
+##  Función `convertir(numero)`
 
 ```python
 def convertir(numero):
@@ -32,7 +32,7 @@ return {
 
 ---
 
-## 🔹 Función `menu()`
+##  Función `menu()`
 
 Esta función controla la interacción con el usuario.
 
@@ -112,7 +112,7 @@ Evita que el programa falle si el usuario escribe un valor no númerico.
 
 ---
 
-## 🔹 Punto de inicio del programa
+##  Punto de inicio del programa
 
 ```python
 if __name__ == "__main__":
@@ -125,8 +125,8 @@ Esto indica:
 
 ---
 
-# ✅ Resumen
+#  Resumen
 
-✔ Recibe un número decimal  
-✔ Lo convierte a varios sistemas númericos
-✔ Muestra resultados  
+ - `Recibe un número decimal`  
+ - `Lo convierte a varios sistemas númericos`
+ - `Muestra resultados`
