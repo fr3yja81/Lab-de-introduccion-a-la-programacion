@@ -1,4 +1,4 @@
-# 📌 Conversor de números en Python — Explicación clara
+#  Conversor de números en Python
 
 Este programa convierte un número decimal a diferentes sistemas númericos: binario, hexadecimal, octal y booleano. Además.
 
