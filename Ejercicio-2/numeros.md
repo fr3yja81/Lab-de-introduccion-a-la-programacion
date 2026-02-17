@@ -1,80 +1,132 @@
-# Conversor de Decimal a Binario, Hexadecimal, Octal y Booleano
+# 📌 Conversor de números en Python — Explicación clara
 
-## ¿Qué hace el programa?
-
-Este programa pide un número decimal y lo convierte a:
-
-- Binario  
-- Hexadecimal  
-- Octal  
-- Booleano  
+Este programa convierte un número decimal a diferentes sistemas númericos: binario, hexadecimal, octal y booleano. Además.
 
 ---
 
-## Cómo funciona la conversión
+## 🔹 Función `convertir(numero)`
 
-Para binario, octal y hexadecimal usamos la misma idea:
+```python
+def convertir(numero):
+```
 
-1. Dividir el número entre la base (2, 8 o 16).
-2. Guardar el residuo usando `%`.
-3. Dividir usando `//` (división entera).
-4. Repetir hasta que el número llegue a 0.
-5. Escribir los residuos al revés.
+Esta función recibe un número decimal y devuelve un **diccionario** con sus conversiones.
 
-En hexadecimal, cuando el residuo es mayor que 9, usamos letras:
+```python
+return {
+    "Binario": bin(numero),
+    "Hexadecimal": hex(numero),
+    "Octal": oct(numero),
+    "Booleano": bool(numero)
+}
+```
 
-- A = 10  
-- B = 11  
-- C = 12  
-- D = 13  
-- E = 14  
-- F = 15  
+### ¿Qué hace cada conversión?
 
----
-
-## Comandos importantes que usamos
-
-### `def`
-Sirve para crear funciones.  
-Nos ayuda a dividir el programa en partes más organizadas.
-
-### `return`
-Devuelve el resultado de la función.
-
-### `while`
-Repite el código mientras la condición sea verdadera.  
-Lo usamos para seguir dividiendo hasta llegar a 0.
-
-### `if / elif / else`
-Sirve para tomar decisiones dependiendo de una condición.
-
-### `//`
-División entera (sin decimales).
-
-### `%`
-Obtiene el residuo de una división.  
-Es lo más importante para hacer las conversiones.
-
-### `bool()`
-Convierte un número en `True` o `False`.
-
-- 0 → False  
-- Cualquier otro número → True  
-
-### `try / except`
-Evita que el programa se rompa si el usuario escribe algo que no es número.
-
-### `break`
-Sirve para salir del ciclo del menú.
+- `bin(numero)` → convierte a **binario**
+- `hex(numero)` → convierte a **hexadecimal**
+- `oct(numero)` → convierte a **octal**
+- `bool(numero)` → indica si el número es:
+  - `True` → distinto de 0
+  - `False` → igual a 0
 
 ---
 
-## En resumen
+## 🔹 Función `menu()`
 
-Este programa combina:
+Esta función controla la interacción con el usuario.
 
-- Funciones  
-- Ciclos  
-- Condicionales  
+```python
+while True:
+```
 
-Y todo se basa en dividir y guardar residuos para cambiar de base numérica.
+Crea un ciclo infinito para que el menú se repita hasta que el usuario salga.
+
+---
+
+### Mostrar opciones
+
+```python
+print("1. Convertir")
+print("2. Salir")
+```
+
+Permite elegir entre convertir un número o cerrar el programa.
+
+---
+
+### Leer opción del usuario
+
+```python
+opcion = input("Seleccione una opción: ")
+```
+
+---
+
+### Salir del programa
+
+```python
+if opcion == "2":
+    break
+```
+
+Detiene el ciclo y termina el programa.
+
+---
+
+### Convertir número
+
+```python
+numero = int(input("Ingrese un número decimal: "))
+```
+
+Pide un número y lo convierte a entero.
+
+Luego:
+
+```python
+resultados = convertir(numero)
+```
+
+Llama a la función de conversión.
+
+---
+
+### Mostrar resultados
+
+```python
+for tipo, valor in resultados.items():
+```
+
+Recorre el diccionario e imprime cada conversión.
+
+---
+
+### Manejo de errores
+
+```python
+except ValueError:
+```
+
+Evita que el programa falle si el usuario escribe un valor no númerico.
+
+---
+
+## 🔹 Punto de inicio del programa
+
+```python
+if __name__ == "__main__":
+    menu()
+```
+
+Esto indica:
+
+> Ejecutar el menú **solo cuando el archivo se corre directamente**, no cuando se importa en otro programa.
+
+---
+
+# ✅ Resumen
+
+✔ Recibe un número decimal  
+✔ Lo convierte a varios sistemas númericos
+✔ Muestra resultados  
