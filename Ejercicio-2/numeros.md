@@ -34,7 +34,7 @@ return {
 
 ##  Función `menu()`
 
-Esta función controla la interacción con el usuario.
+Esta función controla la interacción con el usuario mediante un menu.
 
 ```python
 while True:
