@@ -120,21 +120,6 @@ Evita que el programa falle si el usuario escribe un valor no númerico.
 
 ![Captura 5](Assets/IMG/image.png)
 
----
-
-##  Punto de inicio del programa
-
-```python
-if __name__ == "__main__":
-    menu()
-```
-
-Esto indica:
-
-> Ejecutar el menú **solo cuando el archivo se corre directamente**, no cuando se importa en otro programa.
-
----
-
 #  Resumen
 
  - `Recibe un número decimal`  
