@@ -1,6 +1,7 @@
-print("Loggin")
+print("Inicia sesión")
 
 intentos = 0
+acceso = 0
 
 while intentos < 3:
 
@@ -33,13 +34,46 @@ while intentos < 3:
 
     elif user == "admin" and password == "admin2026":
         print("Acceso concedido")
-        break
-
+        acceso = 1
+    
     else:
         print("Acceso denegado")
         intentos += 1
 
     print(f"Intentos: {intentos}")
 
-if intentos >= 3:
-    print("Demasiados intentos. Acceso bloqueado.")
+    if intentos >= 3:
+        print("Demasiados intentos. Acceso bloqueado.")
+        break
+
+    while acceso == 1:
+            print("1. Clasificar número.")
+            print("2. Categoria de edad y permisos.")
+            print("3. Calcular tarifa final.")
+            print("4. Cerrar sesión.")
+            print("5. Final")
+            opcion = int(input("Seleccione una de la opciones anteriores: "))
+
+            if opcion == 1:
+                print("Clasificar número.")
+            
+            elif opcion == 2:
+                print("Categoria de edad y perimsos.")
+            
+            elif opcion == 3:
+                print("Calcular tarifa final.")
+
+            elif opcion == 4:
+                print("Sesión cerrada.")
+                acceso = 0
+
+            elif opcion == 5:
+                acceso = -1
+                break
+
+            else: 
+                print("Error, opción inválida.")
+
+    if acceso == -1:
+        print("Programa Finalizado.")
+        break
