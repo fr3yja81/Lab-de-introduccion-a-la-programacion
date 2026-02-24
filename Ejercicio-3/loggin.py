@@ -24,22 +24,11 @@ while True:
         print("La contraseña debe tener al menos 8 caracteres.")
         continue
 
-    tiene_numero = False
-    tiene_letra = False
 
-    for letra in password:
-        if letra.isdigit():
-            tiene_numero = True
-        if letra.isalpha():
-            tiene_letra = True
-
-    if not tiene_numero:
+    if not password.isdigit():
         print("La contraseña debe contener al menos un número.")
-        continue
-
-    if not tiene_letra:
+    elif not password.isalpha():
         print("La contraseña debe contener al menos una letra.")
-        continue
 
     if user == "admin" and password == "admin2026":
         print("Acceso concedido")
