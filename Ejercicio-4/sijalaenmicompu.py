@@ -1,4 +1,4 @@
-print("Inicia sesión")
+print("Iniciar Sesión")
 
 intentos = 0
 acceso = 0
