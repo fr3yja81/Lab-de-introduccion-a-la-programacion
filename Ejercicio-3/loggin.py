@@ -2,43 +2,44 @@ print("Loggin")
 
 intentos = 0
 
-while True:
+while intentos < 3:
+
     user = input("Usuario: ")
     password = input("Contraseña: ")
 
-    digitosPassword = len(password)
-
     if user == "":
-        print("El usuario no puede estar vacio.")
-        continue
+        print("El usuario no puede estar vacío.")
+        intentos += 1
 
-    if password == "":
-        print("La contraseña no puede estar vacia.")
-        continue
+    elif password == "":
+        print("La contraseña no puede estar vacía.")
+        intentos += 1
 
-    elif chr(32) in password:
+    elif " " in password:
         print("La contraseña no debe contener espacios.")
-        continue
+        intentos += 1
 
-    elif digitosPassword < 8:
+    elif len(password) < 8:
         print("La contraseña debe tener al menos 8 caracteres.")
-        continue
+        intentos += 1
 
-
-    if not password.isdigit():
+    elif not any(c.isdigit() for c in password):
         print("La contraseña debe contener al menos un número.")
-    elif not password.isalpha():
-        print("La contraseña debe contener al menos una letra.")
+        intentos += 1
 
-    if user == "admin" and password == "admin2026":
+    elif not any(c.isalpha() for c in password):
+        print("La contraseña debe contener al menos una letra.")
+        intentos += 1
+
+    elif user == "admin" and password == "admin2026":
         print("Acceso concedido")
         break
 
     else:
         print("Acceso denegado")
         intentos += 1
-        print(f"Intentos: {intentos}")
 
-        if intentos >= 3:
-            print("Demasiados intentos. Acceso bloqueado.")
-            break
+    print(f"Intentos: {intentos}")
+
+if intentos >= 3:
+    print("Demasiados intentos. Acceso bloqueado.")
