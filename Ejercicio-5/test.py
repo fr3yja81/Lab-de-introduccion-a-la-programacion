@@ -99,6 +99,47 @@ while intentos < 3:
 
             elif opcion == 3:
                 print("Calcular tarifa final.")
+                
+                precioBase = 200
+                recargo = 0
+                descuento = 0
+
+                edad = int(input("Ingrese su edad: "))
+                dia = int(input("Día de la semana (1-7): "))
+                estudiante = input("¿Eres estudiante? (s/n): ")
+                miembro = input("¿Eres miembro? (s/n): ")
+                metodoPago = input("Método de pago (e/t): ")
+
+                if dia in [6, 7]:  
+                    recargo += 10
+
+                if 0 <= edad <= 12:
+                    descuento += 50
+                elif 13 <= edad <= 17:
+                    descuento += 20
+                elif edad >= 65:
+                    descuento += 30
+
+                if edad >= 13 and estudiante.lower() == "s":
+                    descuento += 15
+
+                if miembro.lower() == "s":
+                    descuento += 10
+
+                if descuento > 60:
+                    descuento = 60
+
+                if metodoPago.lower() == "e":
+                    recargo += 5
+
+                recargoTotal = precioBase * recargo / 100
+                descuentoTotal = precioBase * descuento / 100
+                total = precioBase + recargoTotal - descuentoTotal
+
+                print(f"Precio base: ${precioBase}")
+                print(f"Recargo aplicado: {recargo}% -> ${recargoTotal}")
+                print(f"Descuento aplicado: {descuento}% -> ${descuentoTotal}")
+                print(f"Precio final: ${total}")
 
             elif opcion == 4:
                 print("Sesión cerrada.")
