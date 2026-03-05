@@ -41,116 +41,131 @@ while intentos < 3:
         break
 
     while acceso == 1:
-            print("1. Clasificar número.")
-            print("2. Categoria de edad y permisos.")
-            print("3. Calcular tarifa final.")
-            print("4. Cerrar sesión.")
-            print("5. Final")
-            opcion = int(input("Seleccione una de la opciones anteriores: "))
+        print("1. Clasificar número.")
+        print("2. Categoria de edad y permisos.")
+        print("3. Calcular tarifa final.")
+        print("4. Cerrar sesión.")
+        print("5. Final")
 
-            if opcion == 1:
-                subMenus = 1
-                print("Clasificar número.")
-                while subMenus == 1:
-                    numero = input("Ingrese un número (e para regresar): ")
-                    if numero.isdigit():
+        opcion = input("Seleccione una opción: ")
+
+        if not opcion.isdigit():
+            print("Error, opción inválida.")
+            continue
+
+        opcion = int(opcion)
+
+        if opcion == 1:
+            subMenus = 1
+            print("Clasificar número.")
+
+            while subMenus == 1:
+                numero = input("Ingrese un número (e para regresar): ")
+
+                if numero.lower() == "e":
+                    subMenus = 0
+
+                else:
+                    try:
                         numero = int(numero)
 
                         if numero == 0:
                             print("Es 0.")
                         elif numero < 0:
                             print("Es negativo.")
-                        elif numero > 0:
+                        else:
                             print("Es positivo.")
-                            
+
                         if numero % 2 == 0:
                             print("Es par.")
-                        else: 
+                        else:
                             print("Es impar.")
-                        
-                    elif type(numero) == str:
-                            if numero.lower() == "e":
-                                subMenus = 0
 
-            elif opcion == 2:
-                print("Categoria de edad y perimsos.")
-                edad = int(input("Ingrese su edad: "))
+                    except:
+                        print("Ingrese un número válido.")
 
-                if edad <= 12:
-                    print("Categoria: Niñez")
-                    print("No puedes registrarte.")
-                elif edad > 13 and edad < 18:
-                    print("Categoria: Adolecencia")
-                    print("Puedes registrarte con ayuda de un tutor")
-                elif edad >= 18 and edad < 64:
-                    print("Categoria: Adultez")
-                    print("Puedes registrarte sin tutor.")
-                    
-                licencia = str(input("¿Cuentas con licencia?(s/n): "))
-                if licencia == "s":
-                    print("Puede conducir.")
-                elif licencia == "n":
-                    print("No puedes conducir.")
+        elif opcion == 2:
+            print("Categoria de edad y permisos.")
+            edad = int(input("Ingrese su edad: "))
 
-                identificacion = str(input("¿Cuentas con identificación?(s/n): "))
-                if edad >= 21 and identificacion == "s":
-                    print("Tienes servico VIP.")
+            if edad <= 12:
+                print("Categoria: Niñez")
+                print("No puedes registrarte.")
 
+            elif 13 <= edad < 18:
+                print("Categoria: Adolescencia")
+                print("Puedes registrarte con ayuda de un tutor")
 
-            elif opcion == 3:
-                print("Calcular tarifa final.")
-                
-                precioBase = 200
-                recargo = 0
-                descuento = 0
+            elif 18 <= edad < 64:
+                print("Categoria: Adultez")
+                print("Puedes registrarte sin tutor.")
 
-                edad = int(input("Ingrese su edad: "))
-                dia = int(input("Día de la semana (1-7): "))
-                estudiante = input("¿Eres estudiante? (s/n): ")
-                miembro = input("¿Eres miembro? (s/n): ")
-                metodoPago = input("Método de pago (e/t): ")
+            licencia = input("¿Cuentas con licencia? (s/n): ").lower()
 
-                if dia in [6, 7]:  
-                    recargo += 10
+            if licencia == "s":
+                print("Puede conducir.")
+            else:
+                print("No puedes conducir.")
 
-                if 0 <= edad <= 12:
-                    descuento += 50
-                elif 13 <= edad <= 17:
-                    descuento += 20
-                elif edad >= 65:
-                    descuento += 30
+            identificacion = input("¿Cuentas con identificación? (s/n): ").lower()
 
-                if edad >= 13 and estudiante.lower() == "s":
-                    descuento += 15
+            if edad >= 21 and identificacion == "s":
+                print("Tienes servicio VIP.")
 
-                if miembro.lower() == "s":
-                    descuento += 10
+        elif opcion == 3:
+            print("Calcular tarifa final.")
 
-                if descuento > 60:
-                    descuento = 60
+            precioBase = 200
+            recargo = 0
+            descuento = 0
 
-                if metodoPago.lower() == "e":
-                    recargo += 5
+            edad = int(input("Ingrese su edad: "))
+            dia = int(input("Día de la semana (1-7): "))
+            estudiante = input("¿Eres estudiante? (s/n): ").lower()
+            miembro = input("¿Eres miembro? (s/n): ").lower()
+            metodoPago = input("Método de pago (e/t): ").lower()
 
-                recargoTotal = precioBase * recargo / 100
-                descuentoTotal = precioBase * descuento / 100
-                total = precioBase + recargoTotal - descuentoTotal
+            if dia in [6, 7]:
+                recargo += 10
 
-                print(f"Precio base: ${precioBase}")
-                print(f"Recargo aplicado: {recargo}% -> ${recargoTotal}")
-                print(f"Descuento aplicado: {descuento}% -> ${descuentoTotal}")
-                print(f"Precio final: ${total}")
+            if 0 <= edad <= 12:
+                descuento += 50
+            elif 13 <= edad <= 17:
+                descuento += 20
+            elif edad >= 65:
+                descuento += 30
 
-            elif opcion == 4:
-                print("Sesión cerrada.")
-                acceso = 0
+            if edad >= 13 and estudiante == "s":
+                descuento += 15
 
-            elif opcion == 5:
-                acceso = -1
-                break
+            if miembro == "s":
+                descuento += 10
 
-            else: 
-                print("Error, opción inválida.")
+            if descuento > 60:
+                descuento = 60
+
+            if metodoPago == "e":
+                recargo += 5
+
+            recargoTotal = precioBase * recargo / 100
+            descuentoTotal = precioBase * descuento / 100
+            total = precioBase + recargoTotal - descuentoTotal
+
+            print(f"Precio base: ${precioBase}")
+            print(f"Recargo aplicado: {recargo}% -> ${recargoTotal}")
+            print(f"Descuento aplicado: {descuento}% -> ${descuentoTotal}")
+            print(f"Precio final: ${total}")
+
+        elif opcion == 4:
+            print("Sesión cerrada.")
+            acceso = 0
+
+        elif opcion == 5:
+            acceso = -1
+            break
+
+        else:
+            print("Error, opción inválida.")
 
     if acceso == -1:
         print("Programa Finalizado.")
