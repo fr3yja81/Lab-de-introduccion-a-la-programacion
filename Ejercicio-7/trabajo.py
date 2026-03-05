@@ -116,14 +116,26 @@ def calcular_tarifa():
     descuento = 0
 
     edad = int(input("Ingrese su edad: "))
-    dia = int(input("Día de la semana (1-7): "))
-    estudiante = input("¿Eres estudiante? (s/n): ").lower()
-    miembro = input("¿Eres miembro? (s/n): ").lower()
-    metodoPago = input("Método de pago (e/t): ").lower()
+    dia = input("Día de la semana (1-7): ")
+
+    if not dia.isdigit():
+        print("Ingrese un dia de la semana válido. (1-7)")
+        return
+    
+    dia = int(dia)
 
     match dia:
         case 6 | 7:
             recargo += 10
+        case 1 | 2 | 3 | 4 | 5:
+            pass
+        case _:
+            print("El dia debe estar entre 1 y 7.")
+            return
+
+    estudiante = input("¿Eres estudiante? (s/n): ").lower()
+    miembro = input("¿Eres miembro? (s/n): ").lower()
+    metodoPago = input("Método de pago (e/t): ").lower()
 
     match edad:
         case e if 0 <= e <= 12:
