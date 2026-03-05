@@ -111,6 +111,8 @@ while intentos < 3:
 
             if edad >= 21 and identificacion == "s":
                 print("Tienes servicio VIP.")
+            else:
+                print("No tienes servicios VIP")
 
         elif opcion == 3:
             print("Calcular tarifa final.")
