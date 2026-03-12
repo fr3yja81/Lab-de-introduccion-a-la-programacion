@@ -62,4 +62,8 @@ def inversion():
         cantidad = cantidad * (1 + interes / 100)**tiempo 
         print(f"Año: {i} : {cantidad}")
 
-inversion()
+def triangulo():
+    altura = int(input("Ingrese la altura: "))
+
+    for i in range(1, altura, 1):
+        print("*" * i)
