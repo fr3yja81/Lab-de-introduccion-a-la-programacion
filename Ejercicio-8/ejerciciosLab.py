@@ -89,7 +89,7 @@ def contraseñaCorrecta():
             break
 
 def numeroPrimo():
-    numero = validarEntradaInt("Ingrese un número: ")
+    numero = validarEntradaInt("Ingrese un número primo: ")
 
     esPrimo = True
 
