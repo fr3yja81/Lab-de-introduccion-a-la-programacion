@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request, jsonify
-import os
+import cv2
+import numpy as np
+import base64
+from pyzbar.pyzbar import decode
 
 app = Flask(__name__)
 
@@ -7,13 +10,27 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/guardar_datos', methods=['POST'])
-def guardar_datos():
-    data = request.json
-    print(f"Código recibido: {data.get('codigo')}")
-    return jsonify({"status": "ok"})
+@app.route('/scanner', methods=['POST'])
+def scanner():
+
+    data = request.json['image']
+
+    img_data = base64.b64decode(data.split(',')[1])
+    
+    nparr = np.frombuffer(img_data, np.uint8)
+    frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
+    objetos = decode(frame)
+    
+    if objetos:
+        for obj in objetos:
+            resultado = obj.data.decode('utf-8')
+            tipo = obj.type
+            print(f"Detectado: {resultado} ({tipo})")
+            return jsonify({"status": "ok", "value": resultado, "type": tipo})
+
+    return jsonify({"status": "none"})
 
 if __name__ == '__main__':
-    # Render asigna un puerto dinámico, por eso usamos os.environ
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+
+    app.run(host='0.0.0.0', port=5000, debug=True)
