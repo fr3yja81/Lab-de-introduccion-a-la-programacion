@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner Web en Vivo</title>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <style>
+        body { font-family: sans-serif; background: #1a1a1a; color: white; text-align: center; }
+        #reader { width: 100%; max-width: 500px; margin: 20px auto; border: 2px solid #4CAF50; border-radius: 8px; }
+        .result-box { margin-top: 20px; font-size: 1.2em; color: #4CAF50; }
+    </style>
+</head>
+<body>
+    <h1>Escáner en Vivo</h1>
+    <div id="reader"></div>
+    <div class="result-box">
+        Resultado: <span id="text-result">Esperando...</span>
+    </div>
+
+    <script>
+        const scanner = new Html5QrcodeScanner("reader", { 
+            fps: 15,     // Velocidad de escaneo
+            qrbox: 250   // Tamaño del cuadro de enfoque
+        });
+
+        scanner.render((decodedText) => {
+            // Esto ocurre cuando se detecta un código
+            document.getElementById('text-result').innerText = decodedText;
+            
+            // Enviar el dato a tu servidor Python
+            fetch('/scan_result', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ code: decodedText })
+            });
+
+            // Opcional: Detener el escáner tras el éxito
+            // scanner.clear(); 
+        });
+    </script>
+</body>
+</html>
