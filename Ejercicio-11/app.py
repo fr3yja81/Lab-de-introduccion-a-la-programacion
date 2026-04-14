@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+import os
 
 app = Flask(__name__)
 
@@ -6,13 +7,13 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/scan_result', methods=['POST'])
-def scan_result():
+@app.route('/guardar_datos', methods=['POST'])
+def guardar_datos():
     data = request.json
-    codigo = data.get('code')
-    print(f"✅ Código recibido en el servidor: {codigo}")
-    return jsonify({"status": "success"})
+    print(f"Código recibido: {data.get('codigo')}")
+    return jsonify({"status": "ok"})
 
 if __name__ == '__main__':
-    # Importante: host 0.0.0.0 para que el iPhone pueda entrar
-    app.run(host='0.0.0.0', port=5000)
+    # Render asigna un puerto dinámico, por eso usamos os.environ
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
