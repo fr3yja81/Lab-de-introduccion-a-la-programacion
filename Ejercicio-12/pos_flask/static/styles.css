@@ -1,0 +1,59 @@
+/* Colores base y scrollbar personalizada para tema oscuro */
+body {
+    background-color: #0f0f0f;
+    color: white;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 10px;
+}
+
+.product-card:hover {
+    border-color: #4f46e5;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 10px;
+}
+
+.product-card:hover {
+    border-color: #4f46e5;
+    transform: translateY(-2px);
+    background-color: #1f1f1f;
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    body * {
+        visibility: hidden;
+    }
+    #receipt-modal, #receipt-modal * {
+        visibility: visible;
+    }
+    #receipt-modal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: white;
+    }
+}
+
+#receipt-modal {
+    backdrop-filter: blur(5px);
+}

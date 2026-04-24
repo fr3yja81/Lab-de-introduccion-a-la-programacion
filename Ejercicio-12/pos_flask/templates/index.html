@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Punto de Venta Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="h-screen flex flex-col overflow-hidden bg-[#0f0f0f] text-white">
+
+    <header class="p-4 bg-[#1a1a1a] border-b border-[#2a2a2a] flex justify-between items-center">
+        <h1 class="text-lg font-bold text-gray-400">Punto de venta</h1>
+        <div class="flex items-center gap-4">
+            <input type="text" id="main-search" onkeyup="filterProducts()" placeholder="Buscar producto o SKU..." 
+                   class="bg-[#2a2a2a] border border-[#3a3a3a] px-4 py-2 rounded-md text-sm w-80 outline-none focus:border-indigo-500">
+            <button onclick="toggleScanner()" class="bg-indigo-600 hover:bg-indigo-500 p-2.5 rounded-md transition">
+                <i class="fas fa-barcode"></i>
+            </button>
+            <div class="text-right ml-4">
+                <p class="text-xs font-bold uppercase">Caja 01</p>
+                <p class="text-[10px] text-gray-500 uppercase">Alex</p>
+            </div>
+        </div>
+    </header>
+
+    <div id="reader-container" class="hidden fixed inset-0 z-50 bg-black/90 flex flex-col items-center justify-center p-4">
+        <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#2a2a2a] w-full max-w-md">
+            <h2 class="text-center mb-4 font-bold">Escáner OpenCV + Pyzbar</h2>
+            <video id="video-scanner" class="rounded-lg w-full border-2 border-indigo-500" autoplay playsinline></video>
+            <canvas id="canvas-scanner" class="hidden"></canvas>
+            <div id="log-scanner" class="text-center mt-4 text-xs font-mono text-indigo-400 uppercase tracking-widest">Buscando...</div>
+            <button onclick="toggleScanner()" class="w-full mt-6 bg-red-600/20 text-red-500 py-3 rounded-xl font-bold">Cancelar</button>
+        </div>
+    </div>
+
+    <main class="flex flex-1 overflow-hidden">
+        <aside class="w-52 bg-[#161616] border-r border-[#2a2a2a] p-4">
+            <nav class="space-y-1">
+                <button onclick="filterByCategory('Todos')" class="cat-link block w-full text-left px-3 py-2 text-sm rounded bg-indigo-600/10 text-indigo-400">Todos</button>
+                <button onclick="filterByCategory('Electrónica')" class="cat-link block w-full text-left px-3 py-2 text-sm text-gray-500 hover:bg-[#2a2a2a] rounded">Electrónica</button>
+                <button onclick="filterByCategory('Ropa')" class="cat-link block w-full text-left px-3 py-2 text-sm text-gray-500 hover:bg-[#2a2a2a] rounded">Ropa</button>
+                <button onclick="filterByCategory('Alimentos')" class="cat-link block w-full text-left px-3 py-2 text-sm text-gray-500 hover:bg-[#2a2a2a] rounded">Alimentos</button>
+            </nav>
+        </aside>
+
+        <section class="flex-1 p-6 overflow-y-auto bg-[#121212]">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {% for p in productos %}
+                <div class="product-item bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-4 flex flex-col" 
+                     data-category="{{ p.cat }}" data-id="{{ p.id }}" data-name="{{ p.nombre|lower }}">
+                    <span class="text-[10px] font-mono text-gray-600">{{ p.id }}</span>
+                    <h3 class="text-sm font-bold mb-4 h-8">{{ p.nombre }}</h3>
+                    <div class="flex items-center justify-between bg-[#2a2a2a] rounded-lg p-1.5 mt-auto">
+                        <span class="font-bold text-sm ml-1">${{ p.precio }}</span>
+                        <button onclick="addToCart('{{ p.id }}', '{{ p.nombre }}', '{{ p.precio }}')" class="bg-indigo-600 px-3 py-1.5 rounded-md text-[10px] font-bold">+ Añadir</button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <aside class="w-80 bg-[#1a1a1a] border-l border-[#2a2a2a] flex flex-col p-4">
+            <div class="flex justify-between items-center mb-4 border-b border-[#2a2a2a] pb-2">
+                <span class="font-bold text-xs text-gray-500 uppercase">Ticket</span>
+                <span id="item-count" class="text-[10px] bg-[#2a2a2a] px-2 py-0.5 rounded">0 items</span>
+            </div>
+            <div id="cart-items" class="flex-1 overflow-y-auto space-y-3"></div>
+            <div class="p-4 bg-[#161616] border-t border-[#2a2a2a] mt-4 space-y-2">
+                <div class="flex justify-between text-xs text-gray-500"><span>Subtotal</span><span id="sub-val">$0.00</span></div>
+                <div class="flex justify-between text-xs text-gray-500"><span>IVA (16%)</span><span id="iva-val">$0.00</span></div>
+                <div class="flex justify-between text-xl font-bold text-indigo-500 pt-2 border-t border-[#2a2a2a]">
+                    <span>Total</span><span id="total-val">$0.00</span>
+                </div>
+                <button onclick="processPayment()" class="w-full bg-indigo-600 py-3 rounded-xl font-bold text-sm mt-2 shadow-lg">Procesar pago</button>
+            </div>
+        </aside>
+    </main>
+
+    <div id="receipt-modal" class="hidden fixed inset-0 z-[60] bg-black/95 flex items-center justify-center p-4">
+        <div class="bg-white text-black p-8 rounded-sm w-full max-w-sm font-mono">
+            <div class="text-center border-b border-dashed border-gray-400 pb-4 mb-4">
+                <h2 class="font-bold">TICKET DE VENTA</h2>
+                <p id="receipt-date" class="text-[10px]"></p>
+                <p id="receipt-folio" class="text-[10px] font-bold"></p>
+            </div>
+            <div id="receipt-products" class="space-y-1 text-xs mb-4"></div>
+            <div class="border-t border-dashed border-gray-400 pt-4 text-sm font-bold">
+                <div class="flex justify-between text-lg"><span>TOTAL:</span><span id="rec-total"></span></div>
+            </div>
+            <button onclick="closeReceipt()" class="w-full mt-6 bg-indigo-600 text-white py-2 rounded-md font-sans">Nueva Venta</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
